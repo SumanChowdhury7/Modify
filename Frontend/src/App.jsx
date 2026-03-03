@@ -1,14 +1,17 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import FaceExpression from './features/expression/components/FaceExpression'
+import { AuthProvider } from "./features/auth/auth.context";
+
+import AppRoutes from './AppRoutes'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <FaceExpression />
+    <AuthProvider>
+    <AppRoutes />
+    </AuthProvider>
+    
   )
 }
 
