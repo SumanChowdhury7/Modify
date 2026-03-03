@@ -17,3 +17,33 @@ export async function register(username,email,password){
         throw err
     }
 }
+
+export async function login(identifier,password){
+    try{
+        const response = await api.post('/login',{
+            identifier,
+            password
+        })
+        return response.data
+    } catch(err){
+        console.log(err)
+    }
+}
+export async function logout() {
+  try {
+    const response = await api.post("/logout");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getMe() {
+  try {
+    const response = await api.get("/get-me");
+    return response.data;
+    // console.log(response.data)
+  } catch (err) {
+    throw err;
+  }
+}

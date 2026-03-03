@@ -46,11 +46,11 @@ const registerController = async (req, res) => {
 };
 
 const loginController = async (req,res)=>{
-const {username,email,password} = req.body
+const {identifier,password} = req.body
 const user= await userModel.findOne({
     $or: [
-{username:username},
-{email:email}
+{username:identifier},
+{email:identifier}
     ]
 }).select('+password');
 
