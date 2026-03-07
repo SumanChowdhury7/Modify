@@ -1,0 +1,128 @@
+.player{
+
+position:fixed;
+bottom:0;
+left:0;
+
+width:100%;
+
+display:flex;
+align-items:center;
+gap:20px;
+
+padding:12px 30px;
+
+background:rgba(15,15,25,0.85);
+backdrop-filter:blur(14px);
+
+border-top:1px solid rgba(255,255,255,0.08);
+
+color:white;
+
+}
+
+.player img{
+
+width:50px;
+height:50px;
+border-radius:8px;
+object-fit:cover;
+
+}
+
+.song-info{
+min-width:140px;
+}
+
+.song-info h4{
+margin:0;
+font-size:15px;
+}
+
+.song-info p{
+margin:0;
+font-size:13px;
+color:#aaa;
+}
+
+.controls{
+
+display:flex;
+gap:10px;
+
+}
+
+.controls button{
+
+background:#1f1f2e;
+border:none;
+
+width:40px;
+height:40px;
+
+border-radius:10px;
+
+color:white;
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+.controls button:hover{
+
+background:#6366f1;
+
+}
+
+.progress-container{
+
+display:flex;
+align-items:center;
+gap:10px;
+
+flex:1;
+
+}
+
+.progress-container input{
+
+flex:1;
+cursor:pointer;
+
+}
+
+.volume{
+
+display:flex;
+align-items:center;
+gap:6px;
+
+}
+
+.volume input{
+
+width:90px;
+cursor:pointer;
+
+}
+
+@media (max-width: 600px) {
+  .player {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .volume {
+    width: 100%;
+  }
+
+  .progress {
+    width: 100%;
+  }
+
+  .playBtn {
+    align-self: center;
+  }
+}

@@ -27,39 +27,46 @@ export const init = async ({ landmarkerRef, videoRef, streamRef }) => {
     await videoRef.current.play();
 };
 
-export const detect = ({ landmarkerRef, videoRef, setExpression }) => {
-    if (!landmarkerRef.current || !videoRef.current) return;
+export function detect({ landmarkerRef, videoRef, setExpression }) {
 
-    const results = landmarkerRef.current.detectForVideo(
-        videoRef.current,
-        performance.now()
-    );
+  if (!landmarkerRef.current || !videoRef.current) return null;
 
-    if (results.faceBlendshapes?.length > 0) {
-        const blendshapes = results.faceBlendshapes[ 0 ].categories;
+  const results = landmarkerRef.current.detectForVideo(
+    videoRef.current,
+    performance.now()
+  );
 
-        const getScore = (name) =>
-            blendshapes.find((b) => b.categoryName === name)?.score || 0;
+  if (!results.faceBlendshapes?.length) return null;
 
-        const smileLeft = getScore("mouthSmileLeft");
-        const smileRight = getScore("mouthSmileRight");
-        const jawOpen = getScore("jawOpen");
-        const browUp = getScore("browInnerUp");
-        const frownLeft = getScore("mouthFrownLeft");
-        const frownRight = getScore("mouthFrownRight");
+  const blend = results.faceBlendshapes[0].categories;
 
-        console.log(getScore("mouthFrownLeft"))
+  const getScore = (name) =>
+    blend.find((b) => b.categoryName === name)?.score || 0;
 
-        let currentExpression = "Neutral";
+  const smileLeft = getScore("mouthSmileLeft");
+  const smileRight = getScore("mouthSmileRight");
+  const jawOpen = getScore("jawOpen");
+  const browUp = getScore("browInnerUp");
+  const frownLeft = getScore("mouthFrownLeft");
+  const frownRight = getScore("mouthFrownRight");
 
-        if (smileLeft > 0.5 && smileRight > 0.5) {
-            currentExpression = "Happy 😄";
-        } else if (jawOpen > 0.2 && browUp > 0.2) {
-            currentExpression = "Surprised 😲";
-        } else if (frownLeft > 0.0001 && frownRight > 0.0001) {
-            currentExpression = "Sad 😢";
-        }
+  let expression = "Neutral 😐";
+  let mood = "neutral";
 
-        setExpression(currentExpression);
-    }
+  if (smileLeft > 0.5 && smileRight > 0.5) {
+    expression = "Happy 😄";
+    mood = "happy";
+  } 
+  else if (jawOpen > 0.3 && browUp > 0.3) {
+    expression = "Surprised 😲";
+    mood = "surprised";
+  } 
+  else if (frownLeft > 0.0001 && frownRight > 0.0001) {
+    expression = "Sad 😢";
+    mood = "sad";
+  }
+
+  setExpression(expression);
+
+  return mood;
 };

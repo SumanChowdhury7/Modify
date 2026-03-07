@@ -39,17 +39,22 @@ mood
   })
 }
 
-async function getSong(req,res) {
-  const {mood} = req.query
+async function getSong(req, res) {
 
-  const song = await songModel.findOne({
-    mood
-  })
+  const { mood } = req.query;
+
+  const songs = await songModel.aggregate([
+    { $match: { mood } },
+    { $sample: { size: 1 } }
+  ]);
+
+  const song = songs[0];
 
   res.status(200).json({
     message: "Fetched Successfully",
     song
-  })
+  });
+
 }
 
 module.exports = {

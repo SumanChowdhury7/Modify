@@ -8,6 +8,21 @@
   font-family: "Inter", "Poppins", sans-serif;
 }
 
+.detect-page{
+.detect-page {
+  min-height: 100svh;
+  padding: 24px 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+
+  background: radial-gradient(circle at top, #1f1f3a, #0b0b12 70%);
+  font-family: "Inter", "Poppins", sans-serif;
+}
+}
 /* Card */
 .face-card {
   position: relative;
