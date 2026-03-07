@@ -16,7 +16,6 @@ export const useSong = () => {
 
       const data = await getSong({ mood });
 
-      // backend response -> { song: {...} }
       setSong(data.song);
 
     } catch (error) {

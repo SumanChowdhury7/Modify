@@ -18,7 +18,7 @@ const Home = () => {
       if (index === text.length) {
         clearInterval(interval);
       }
-    }, 60); // typing speed
+    }, 60); 
 
     return () => clearInterval(interval);
   }, []);

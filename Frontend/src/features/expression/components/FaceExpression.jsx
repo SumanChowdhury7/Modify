@@ -44,8 +44,6 @@ export default function FaceExpression() {
     });
 
     if (mood) {
-
-      // backend se song fetch
       await handleGetSong({ mood });
 
     }
@@ -79,8 +77,6 @@ export default function FaceExpression() {
         </div>
 
       </div>
-
-      {/* Music Player */}
       <Player />
 
     </div>
